@@ -159,21 +159,23 @@ def get_gender(model_name_or_path: str, audio_paths: List[str], label2id: Dict, 
 
     return preds
 
-model_name_or_path = "alefiury/wav2vec2-large-xlsr-53-gender-recognition-librispeech"
+if __name__ == '__main__':
+    model_name_or_path = "alefiury/wav2vec2-large-xlsr-53-gender-recognition-librispeech"
 
-audio_paths = [] # Must be a list with absolute paths of the audios that will be used in inference
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    audio_paths = [r"D:\AI Projects\AI Personal Repos\audioClassification\audioFiles\helloWorld.mp3"] # Must be a list with absolute paths of the audios that will be used in inference
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-label2id = {
-    "female": 0,
-    "male": 1
-}
+    label2id = {
+        "female": 0,
+        "male": 1
+    }
 
-id2label = {
-    0: "female",
-    1: "male"
-}
+    id2label = {
+        0: "female",
+        1: "male"
+    }
 
-num_labels = 2
+    num_labels = 2
 
-preds = get_gender(model_name_or_path, audio_paths, label2id, id2label, device)
+    preds = get_gender(model_name_or_path, audio_paths, label2id, id2label, device)
+    print(preds)
